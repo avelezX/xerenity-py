@@ -2,9 +2,10 @@
 Xerenity python library
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 __author__ = 'Xerenity'
 
+from xerenity.catalog import CATALOG
 from xerenity.connection.db import Connection
 from xerenity.search.series import Series
 from xerenity.loans.loans import Loans

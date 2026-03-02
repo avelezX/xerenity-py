@@ -43,7 +43,7 @@ class Connection:
         """
         try:
             data = self.supabase.from_('search_mv').select(
-                'source_name,grupo,description,display_name,ticker').execute().data
+                'source_name,grupo,sub_group,description,display_name,ticker').execute().data
             return data
         except Exception as er:
             return str(er)
