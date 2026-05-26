@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "xerenity"
-version = "0.3.0"
+version = "0.3.1"
 description = "Librería Python para acceder a datos financieros, series de tiempo y marcas de mercado de la plataforma Xerenity."
 readme = "README.md"
 license = { text = "MIT" }

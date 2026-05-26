@@ -2,7 +2,7 @@
 Xerenity python library
 """
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 __author__ = 'Xerenity'
 
 from xerenity.catalog import CATALOG
