@@ -1,5 +1,54 @@
+import os
+import uuid
+from pathlib import Path
+
 from supabase import create_client, Client
 from supabase.client import ClientOptions
+
+
+CLIENT_ID_HEADER = "x-xerenity-client-id"
+
+
+def _get_or_create_client_id() -> str:
+    """Return a stable per-install client UUID for SDK telemetry / rate-limit.
+
+    Resolution order:
+      1. ``XERENITY_CLIENT_ID`` env var (CI/test override).
+      2. ``~/.xerenity/client_id`` file (persisted across runs).
+      3. Newly generated UUID, persisted to step 2 if writable, otherwise
+         used in-memory for this session only.
+
+    The client_id is sent on every request as the ``x-xerenity-client-id``
+    header. The Xerenity engine (xerenity-db) uses it as the bucket key for
+    the ``sdk_public`` rate-limit (see DESIGN_DATA_ACCESS.md §3.8). For
+    authenticated users it serves as SDK install telemetry — anonymising
+    the user across sessions while still distinguishing distinct installs.
+    """
+    env_override = os.environ.get("XERENITY_CLIENT_ID")
+    if env_override:
+        return env_override.strip()
+
+    config_dir = Path.home() / ".xerenity"
+    client_id_file = config_dir / "client_id"
+
+    try:
+        if client_id_file.exists():
+            existing = client_id_file.read_text().strip()
+            if existing:
+                return existing
+    except OSError:
+        # Fall through to generation if we can't read for any reason.
+        pass
+
+    new_id = str(uuid.uuid4())
+    try:
+        config_dir.mkdir(parents=True, exist_ok=True)
+        client_id_file.write_text(new_id)
+    except OSError:
+        # Read-only filesystem (some containers/CI) — use the UUID for this
+        # session only, it just won't survive process restarts.
+        pass
+    return new_id
 
 
 class Connection:
@@ -7,6 +56,7 @@ class Connection:
     def __init__(self):
         url: str = "https://tvpehjbqxpiswkqszwwv.supabase.co"
         key: str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2cGVoamJxeHBpc3drcXN6d3d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY0NTEzODksImV4cCI6MjAxMjAyNzM4OX0.LZW0i9HU81lCdyjAdqjwwF4hkuSVtsJsSDQh7blzozw"
+        self.client_id: str = _get_or_create_client_id()
         self.supabase: Client = create_client(
             url, key,
             options=ClientOptions(
@@ -14,6 +64,7 @@ class Connection:
                 postgrest_client_timeout=40,
                 storage_client_timeout=40,
                 schema="xerenity",
+                headers={CLIENT_ID_HEADER: self.client_id},
             ))
 
     def login(self, username, password):
