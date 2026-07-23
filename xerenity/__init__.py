@@ -10,6 +10,7 @@ from xerenity.connection.db import Connection
 from xerenity.search.series import Series
 from xerenity.loans.loans import Loans
 from xerenity.marks.marks import Marks
+from xerenity.data.engine import DataEngine
 
 
 class Xerenity:
@@ -22,3 +23,6 @@ class Xerenity:
         self.series: Series = Series(connection=self.conn)
         self.loans: Loans = Loans(connection=self.conn)
         self.marks: Marks = Marks(connection=self.conn)
+        # Acceso canónico sobre el motor único (resolve_query / query_series).
+        # Namespace nuevo, aditivo: no toca `series`/`marks` existentes.
+        self.data: DataEngine = DataEngine(connection=self.conn)
