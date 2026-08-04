@@ -162,6 +162,18 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Precio del suelo Bogota - Promedio $/m2 (Catastro)': '8840fe781239a1161ea7c435dd909d63',
         },
     },
+    'Cuentas Nacionales': {
+        'PIB Construcción': {
+            'PIB Trimestral - Oferta - Construcción - Precios Constantes de 2015': 'a87ff679a2f3e71d9181a67b7542122c',
+        },
+        'PIB Demanda': {
+            'PIB Trimestral - Demanda - Consumo Final - Precios Constantes de 2015': '1679091c5a880faf6fb5e6087eb1b2dc',
+            'PIB Trimestral - Demanda - Formación bruta de capital - Precios Constantes de 2015': 'e4da3b7fbbce2345d7772b0674a318d5',
+        },
+        'PIB Oferta': {
+            'PIB Trimestral - Oferta - Total - Precios Constantes de 2015': 'eccbc87e4b5ce2fe28308fd9f2a7baf3',
+        },
+    },
     'Divisas': {
         'COP Forward': {
             'COP Forward 1M': '30144e8e387375725e884e77b4188ce6',
@@ -271,6 +283,12 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Real brasileño - BRL/USD - Tasa venta': 'a49e9411d64ff53eccfdd09ad10a15b3',
             'Sucre ecuatoriano - ECS/USD - Tasa compra': 'ddb30680a691d157187ee1cf9e896d03',
             'Sucre ecuatoriano - ECS/USD - Tasa venta': '2421fcb1263b9530df88f7f002e78ea5',
+        },
+    },
+    'Empleo y Salarios': {
+        'Empleo': {
+            'Tasa de Desempleo': 'c4ca4238a0b923820dcc509a6f75849b',
+            'Tasa de Empleo': 'c81e728d9d4c2f636f067f89cc14862c',
         },
     },
     'IBR-SWAP': {
@@ -402,6 +420,9 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Ventanilla de Expansión Plazo 1 día - Monto aprobado': 'e46de7e1bcaaced9a54f1e9d0d2f800d',
             'Ventanilla de Expansión Plazo 1 día - Monto demandado': 'f8c1f23d6a8d8d7904fc0ea8e066b3bb',
             'Ventanilla de Expansión Plazo 1 día - Tasa de corte': 'b7b16ecf8ca53723593894116071700c',
+        },
+        'Tasa de Política Monetaria': {
+            'Tasa de Politica Monetaria': 'c9f0f895fb98ab9159f51fd0297e236d',
         },
     },
     'Renta Fija': {
@@ -933,6 +954,10 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
         },
     },
     'Tasas de Captación': {
+        'CDT': {
+            'Tasas de interés de los certificados de depósito a término (CDT) 180 días - Semanal': 'b6d767d2f8ed5d21a44b0e5886680cb9',
+            'Tasas de interés de los certificados de depósito a término (CDT) 360 días - Semanal': '37693cfc748049e45d87b8c7d8b9aacd',
+        },
         'CDT Diario': {
             'Captaciones a través de CDT por red de oficinas - Monto, diaria': '8d5e957f297893487bd98fa830fa6413',
             'Captaciones a través de CDT por red de oficinas, diaria': '47d1e990583c9c67424d369f3414728e',
@@ -985,6 +1010,10 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
         'CDT Mensual': {
             'Tasa de interés fin de mes de los certificados de depósito a término a 90 días, CDT 90 para bancos y corporaciones': '34173cb38f07f89ddbebc2ac9128303f',
         },
+        'DTF': {
+            'Tasas de interés de los certificados de depósito a término 90 días (DTF) - Mensual': '98f13708210194c475687be6106a3b84',
+            'Tasas de interés de los certificados de depósito a término 90 días (DTF) - Semanal': '3c59dc048e8850243be8079a5c74d079',
+        },
     },
     'Tasas de Colocación': {
         'Colocación Mensual': {
@@ -1032,8 +1061,18 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
     },
     'Tasas de Interés': {
         'IBR': {
+            'Indicador Bancario de Referencia (IBR) 1 Mes, efectiva': 'c20ad4d76fe97759aa27a0c99bff6710',
+            'Indicador Bancario de Referencia (IBR) 1 Mes, nominal': '6512bd43d9caa6e02c990b0a82652dca',
+            'Indicador Bancario de Referencia (IBR) 12 Meses, efectiva': '6f4922f45568161a8cdf4ad2299f6d23',
+            'Indicador Bancario de Referencia (IBR) 12 Meses, nominal': '70efdf2ec9b086079795c442636b55fb',
+            'Indicador Bancario de Referencia (IBR) 3 Meses, efectiva': 'aab3238922bcc25a6f606eb525ffdc56',
+            'Indicador Bancario de Referencia (IBR) 3 Meses, nominal': 'c51ce410c124a10e0db5e4b97fc2af39',
+            'Indicador Bancario de Referencia (IBR) 6 Meses, efectiva': 'c74d97b01eae257e44aa9d5bade97baf',
+            'Indicador Bancario de Referencia (IBR) 6 Meses, nominal': '9bf31c7ff062936a96d3c8bd1f8f2ff3',
             'Indicador Bancario de Referencia (IBR) a 12 meses, efectiva': '0336dcbab05b9d5ad24f4333c7658a0e',
             'Indicador Bancario de Referencia (IBR) a 12 meses, nominal': 'a597e50502f5ff68e3e25b9114205d4a',
+            'Indicador Bancario de Referencia (IBR) overnight, efectiva': 'd3d9446802a44259755d38e6d163e820',
+            'Indicador Bancario de Referencia (IBR) overnight, nominal': '45c48cce2e2d7fbdea1afc51c7c6ad26',
         },
         'PRIME': {
             'Prime': '0266e33d3f546cb5436a10798e657d97',
@@ -1044,6 +1083,7 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
     },
     'Índices de Precios': {
         'IPC': {
+            'IPC Base 2018': '8f14e45fceea167a5a36dedd4bea2543',
             'Inflación de alimentos y regulados': '93db85ed909c13838ff95ccfa94cebd9',
             'Inflación de alimentos y regulados, anual': 'c7e1249ffc03eb9ded908c236bd1996d',
             'Inflación total, anual': 'e2c420d928d4bf8ce0ff2ec19b371514',
@@ -1060,6 +1100,7 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Inflación, Salud': '28dd2c7955ce926456240b2ff0100bde',
             'Inflación, Transporte': '35f4a8d465e6e1edc05f3d8ab658c551',
             'Meta de inflación': 'e369853df766fa44e1ed0ff613f563bd',
+            'Unidad de Valor Real (UVR)': '1f0e3dad99908345f7439f8ffabdffc4',
             'Índice de Precios al Consumidor': '66f041e16a60928b05a7e228a89c3799',
             'Índice de precios al consumidor (IPC): de alimentos': '68d30a9594728bc39aa24be94b319d21',
             'Índice de precios al consumidor (IPC): de alimentos y regulados': '3ef815416f775098fe977004015c6193',
