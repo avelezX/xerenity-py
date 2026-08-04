@@ -1,6 +1,6 @@
 """
 Xerenity Series Catalog
-Generado automáticamente el 2026-03-02.
+Generado automáticamente el 2026-08-04.
 NO EDITAR MANUALMENTE.
 
 Para regenerar:
@@ -106,6 +106,72 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Sectorización - Crédito doméstico neto al sector público': 'a666587afda6e89aec274a3657558a27',
             'Sectorización - Crédito neto al sector financiero': '6faa8040da20ef399b63a72d0e4ab575',
             'Sectorización - Reserva monetaria': '89f0fd5c927d466d6ec9a21b9ac34ffa',
+        },
+    },
+    'Construcción': {
+        'Cemento': {
+            'Cemento Despachos': '98dca8850ffe910b4e05e9c9113ca195',
+            'Cemento Despachos Var% Anual': 'f9432bfdc287eb1b7d25313517151e84',
+            'Cemento Produccion': '055d0a623d172ba511695df9e8ec4705',
+            'Cemento Produccion Var% Anual': '4d332747adf09bf0c5595c83b63f02ea',
+        },
+        'Costos': {
+            'ICOCED Total': '3b2139d66e44e34c530708fc057393a6',
+            'ICOCED Var Ano Corrido': '202951f24ab3f92ac7b1b90840bbbf23',
+            'ICOCED Var Anual': '39b6d122f0738d756257ae032b0adde3',
+            'ICOCED Var Mensual': '6065061cc2287128c511f32940f4ecab',
+            'ICOCIV Total': '83a4382596a618a100e05cae04ee86eb',
+            'ICOCIV Var Ano Corrido': 'c2da43073efec2431c797bee97747153',
+            'ICOCIV Var Anual': '6e5c22c8d7a5d5a73859821157f1f8db',
+            'ICOCIV Var Mensual': '1fa8c3e8d8f7f34b744daf7ebea14f16',
+        },
+        'Financiacion': {
+            'Financiacion Adq NoVIS Pesos': '3197a5a968f6fce12086233f4727a149',
+            'Financiacion Adq NoVIS UVR': 'd877d3352749661258e41f2b139d3d43',
+            'Financiacion Adq VIS Pesos': '2b623aac21b48aaf39a691079b642179',
+            'Financiacion Adq VIS UVR': '01862ad0d39dd6a2ab8a65f4dd86b77e',
+            'Financiacion Constr NoVIS Pesos': '0f0e18369181d3ec5be154686549ff2c',
+            'Financiacion Constr NoVIS UVR': '3589a74f8e11684c6a4f16f738ec2e92',
+            'Financiacion Constr VIS Pesos': 'd2836dbf2e2c762c44a4e10cc53ab7d4',
+            'Financiacion Constr VIS UVR': '91c21e04d43b0fb9acaee68a7b1859e8',
+        },
+        'PIB': {
+            'PIB Act. Especializadas Var%': 'b5318649b3c758693631df7e0f644da6',
+            'PIB Act. Especializadas Var% anual': '78ecf40b5b4ffe6a283c86ad0750c0b1',
+            'PIB Actividades Especializadas': 'f21d4e4e9bee2838acbd927a5f9c8f4b',
+            'PIB Construccion Total': 'f255e402a8a8459b085693a05bba42ed',
+            'PIB Construccion Total Var%': '87f98f981badc253f60406cda6480e9e',
+            'PIB Construccion Total Var% anual': '7af4441dfe9f7ed35461b74971303136',
+            'PIB Edificaciones': '58e814868e8caacda6e7a2081925ebbc',
+            'PIB Edificaciones Var%': '2033f1d4c1a7d2014bcc5eb360f68b8d',
+            'PIB Edificaciones Var% anual': 'd7a3e72cb16b489ea5f9b4dfa91159cb',
+            'PIB Obras Civiles': '20cf7d745d25ae4de870ffee23fdece6',
+            'PIB Obras Civiles Var%': '4d7ba990b65f09acd3f0f8730ce697df',
+            'PIB Obras Civiles Var% anual': '384169fb1b1a39e6dd3121a430742929',
+            'PIB Total Colombia': '4cbb3840dddd9df8e7c494999c0e37db',
+            'PIB Total Colombia Var%': 'e72fd7e7beb5c8ddf467094b202c6093',
+            'PIB Total Colombia Var% anual': 'c1bfbe68f8150c696148b1d323802c1c',
+        },
+        'Precios Vivienda': {
+            'IPVN Indice Nacional': 'e69a71faf3d2a508b7a0961cf9beae9e',
+            'IPVN Var Anual': '96ad563316477c9426b7f599590b64ec',
+            'IPVN Var Trimestral': '6cbef6076fc56964a4d64f994daab883',
+        },
+        'Suelo Bogota (Catastro)': {
+            'Precio del suelo Bogota - Mediana $/m2 (Catastro)': '9634e00bd29c649331ec1c6d36ceb3e8',
+            'Precio del suelo Bogota - Promedio $/m2 (Catastro)': '8840fe781239a1161ea7c435dd909d63',
+        },
+    },
+    'Cuentas Nacionales': {
+        'PIB Construcción': {
+            'PIB Trimestral - Oferta - Construcción - Precios Constantes de 2015': 'a87ff679a2f3e71d9181a67b7542122c',
+        },
+        'PIB Demanda': {
+            'PIB Trimestral - Demanda - Consumo Final - Precios Constantes de 2015': '1679091c5a880faf6fb5e6087eb1b2dc',
+            'PIB Trimestral - Demanda - Formación bruta de capital - Precios Constantes de 2015': 'e4da3b7fbbce2345d7772b0674a318d5',
+        },
+        'PIB Oferta': {
+            'PIB Trimestral - Oferta - Total - Precios Constantes de 2015': 'eccbc87e4b5ce2fe28308fd9f2a7baf3',
         },
     },
     'Divisas': {
@@ -217,6 +283,12 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Real brasileño - BRL/USD - Tasa venta': 'a49e9411d64ff53eccfdd09ad10a15b3',
             'Sucre ecuatoriano - ECS/USD - Tasa compra': 'ddb30680a691d157187ee1cf9e896d03',
             'Sucre ecuatoriano - ECS/USD - Tasa venta': '2421fcb1263b9530df88f7f002e78ea5',
+        },
+    },
+    'Empleo y Salarios': {
+        'Empleo': {
+            'Tasa de Desempleo': 'c4ca4238a0b923820dcc509a6f75849b',
+            'Tasa de Empleo': 'c81e728d9d4c2f636f067f89cc14862c',
         },
     },
     'IBR-SWAP': {
@@ -348,6 +420,9 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Ventanilla de Expansión Plazo 1 día - Monto aprobado': 'e46de7e1bcaaced9a54f1e9d0d2f800d',
             'Ventanilla de Expansión Plazo 1 día - Monto demandado': 'f8c1f23d6a8d8d7904fc0ea8e066b3bb',
             'Ventanilla de Expansión Plazo 1 día - Tasa de corte': 'b7b16ecf8ca53723593894116071700c',
+        },
+        'Tasa de Política Monetaria': {
+            'Tasa de Politica Monetaria': 'c9f0f895fb98ab9159f51fd0297e236d',
         },
     },
     'Renta Fija': {
@@ -879,6 +954,10 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
         },
     },
     'Tasas de Captación': {
+        'CDT': {
+            'Tasas de interés de los certificados de depósito a término (CDT) 180 días - Semanal': 'b6d767d2f8ed5d21a44b0e5886680cb9',
+            'Tasas de interés de los certificados de depósito a término (CDT) 360 días - Semanal': '37693cfc748049e45d87b8c7d8b9aacd',
+        },
         'CDT Diario': {
             'Captaciones a través de CDT por red de oficinas - Monto, diaria': '8d5e957f297893487bd98fa830fa6413',
             'Captaciones a través de CDT por red de oficinas, diaria': '47d1e990583c9c67424d369f3414728e',
@@ -931,6 +1010,10 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
         'CDT Mensual': {
             'Tasa de interés fin de mes de los certificados de depósito a término a 90 días, CDT 90 para bancos y corporaciones': '34173cb38f07f89ddbebc2ac9128303f',
         },
+        'DTF': {
+            'Tasas de interés de los certificados de depósito a término 90 días (DTF) - Mensual': '98f13708210194c475687be6106a3b84',
+            'Tasas de interés de los certificados de depósito a término 90 días (DTF) - Semanal': '3c59dc048e8850243be8079a5c74d079',
+        },
     },
     'Tasas de Colocación': {
         'Colocación Mensual': {
@@ -978,8 +1061,18 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
     },
     'Tasas de Interés': {
         'IBR': {
+            'Indicador Bancario de Referencia (IBR) 1 Mes, efectiva': 'c20ad4d76fe97759aa27a0c99bff6710',
+            'Indicador Bancario de Referencia (IBR) 1 Mes, nominal': '6512bd43d9caa6e02c990b0a82652dca',
+            'Indicador Bancario de Referencia (IBR) 12 Meses, efectiva': '6f4922f45568161a8cdf4ad2299f6d23',
+            'Indicador Bancario de Referencia (IBR) 12 Meses, nominal': '70efdf2ec9b086079795c442636b55fb',
+            'Indicador Bancario de Referencia (IBR) 3 Meses, efectiva': 'aab3238922bcc25a6f606eb525ffdc56',
+            'Indicador Bancario de Referencia (IBR) 3 Meses, nominal': 'c51ce410c124a10e0db5e4b97fc2af39',
+            'Indicador Bancario de Referencia (IBR) 6 Meses, efectiva': 'c74d97b01eae257e44aa9d5bade97baf',
+            'Indicador Bancario de Referencia (IBR) 6 Meses, nominal': '9bf31c7ff062936a96d3c8bd1f8f2ff3',
             'Indicador Bancario de Referencia (IBR) a 12 meses, efectiva': '0336dcbab05b9d5ad24f4333c7658a0e',
             'Indicador Bancario de Referencia (IBR) a 12 meses, nominal': 'a597e50502f5ff68e3e25b9114205d4a',
+            'Indicador Bancario de Referencia (IBR) overnight, efectiva': 'd3d9446802a44259755d38e6d163e820',
+            'Indicador Bancario de Referencia (IBR) overnight, nominal': '45c48cce2e2d7fbdea1afc51c7c6ad26',
         },
         'PRIME': {
             'Prime': '0266e33d3f546cb5436a10798e657d97',
@@ -990,6 +1083,7 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
     },
     'Índices de Precios': {
         'IPC': {
+            'IPC Base 2018': '8f14e45fceea167a5a36dedd4bea2543',
             'Inflación de alimentos y regulados': '93db85ed909c13838ff95ccfa94cebd9',
             'Inflación de alimentos y regulados, anual': 'c7e1249ffc03eb9ded908c236bd1996d',
             'Inflación total, anual': 'e2c420d928d4bf8ce0ff2ec19b371514',
@@ -1006,6 +1100,7 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Inflación, Salud': '28dd2c7955ce926456240b2ff0100bde',
             'Inflación, Transporte': '35f4a8d465e6e1edc05f3d8ab658c551',
             'Meta de inflación': 'e369853df766fa44e1ed0ff613f563bd',
+            'Unidad de Valor Real (UVR)': '1f0e3dad99908345f7439f8ffabdffc4',
             'Índice de Precios al Consumidor': '66f041e16a60928b05a7e228a89c3799',
             'Índice de precios al consumidor (IPC): de alimentos': '68d30a9594728bc39aa24be94b319d21',
             'Índice de precios al consumidor (IPC): de alimentos y regulados': '3ef815416f775098fe977004015c6193',
