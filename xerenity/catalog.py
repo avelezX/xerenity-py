@@ -1,6 +1,6 @@
 """
 Xerenity Series Catalog
-Generado automáticamente el 2026-03-02.
+Generado automáticamente el 2026-08-04.
 NO EDITAR MANUALMENTE.
 
 Para regenerar:
@@ -106,6 +106,60 @@ CATALOG: Dict[str, Dict[str, Dict[str, str]]] = {
             'Sectorización - Crédito doméstico neto al sector público': 'a666587afda6e89aec274a3657558a27',
             'Sectorización - Crédito neto al sector financiero': '6faa8040da20ef399b63a72d0e4ab575',
             'Sectorización - Reserva monetaria': '89f0fd5c927d466d6ec9a21b9ac34ffa',
+        },
+    },
+    'Construcción': {
+        'Cemento': {
+            'Cemento Despachos': '98dca8850ffe910b4e05e9c9113ca195',
+            'Cemento Despachos Var% Anual': 'f9432bfdc287eb1b7d25313517151e84',
+            'Cemento Produccion': '055d0a623d172ba511695df9e8ec4705',
+            'Cemento Produccion Var% Anual': '4d332747adf09bf0c5595c83b63f02ea',
+        },
+        'Costos': {
+            'ICOCED Total': '3b2139d66e44e34c530708fc057393a6',
+            'ICOCED Var Ano Corrido': '202951f24ab3f92ac7b1b90840bbbf23',
+            'ICOCED Var Anual': '39b6d122f0738d756257ae032b0adde3',
+            'ICOCED Var Mensual': '6065061cc2287128c511f32940f4ecab',
+            'ICOCIV Total': '83a4382596a618a100e05cae04ee86eb',
+            'ICOCIV Var Ano Corrido': 'c2da43073efec2431c797bee97747153',
+            'ICOCIV Var Anual': '6e5c22c8d7a5d5a73859821157f1f8db',
+            'ICOCIV Var Mensual': '1fa8c3e8d8f7f34b744daf7ebea14f16',
+        },
+        'Financiacion': {
+            'Financiacion Adq NoVIS Pesos': '3197a5a968f6fce12086233f4727a149',
+            'Financiacion Adq NoVIS UVR': 'd877d3352749661258e41f2b139d3d43',
+            'Financiacion Adq VIS Pesos': '2b623aac21b48aaf39a691079b642179',
+            'Financiacion Adq VIS UVR': '01862ad0d39dd6a2ab8a65f4dd86b77e',
+            'Financiacion Constr NoVIS Pesos': '0f0e18369181d3ec5be154686549ff2c',
+            'Financiacion Constr NoVIS UVR': '3589a74f8e11684c6a4f16f738ec2e92',
+            'Financiacion Constr VIS Pesos': 'd2836dbf2e2c762c44a4e10cc53ab7d4',
+            'Financiacion Constr VIS UVR': '91c21e04d43b0fb9acaee68a7b1859e8',
+        },
+        'PIB': {
+            'PIB Act. Especializadas Var%': 'b5318649b3c758693631df7e0f644da6',
+            'PIB Act. Especializadas Var% anual': '78ecf40b5b4ffe6a283c86ad0750c0b1',
+            'PIB Actividades Especializadas': 'f21d4e4e9bee2838acbd927a5f9c8f4b',
+            'PIB Construccion Total': 'f255e402a8a8459b085693a05bba42ed',
+            'PIB Construccion Total Var%': '87f98f981badc253f60406cda6480e9e',
+            'PIB Construccion Total Var% anual': '7af4441dfe9f7ed35461b74971303136',
+            'PIB Edificaciones': '58e814868e8caacda6e7a2081925ebbc',
+            'PIB Edificaciones Var%': '2033f1d4c1a7d2014bcc5eb360f68b8d',
+            'PIB Edificaciones Var% anual': 'd7a3e72cb16b489ea5f9b4dfa91159cb',
+            'PIB Obras Civiles': '20cf7d745d25ae4de870ffee23fdece6',
+            'PIB Obras Civiles Var%': '4d7ba990b65f09acd3f0f8730ce697df',
+            'PIB Obras Civiles Var% anual': '384169fb1b1a39e6dd3121a430742929',
+            'PIB Total Colombia': '4cbb3840dddd9df8e7c494999c0e37db',
+            'PIB Total Colombia Var%': 'e72fd7e7beb5c8ddf467094b202c6093',
+            'PIB Total Colombia Var% anual': 'c1bfbe68f8150c696148b1d323802c1c',
+        },
+        'Precios Vivienda': {
+            'IPVN Indice Nacional': 'e69a71faf3d2a508b7a0961cf9beae9e',
+            'IPVN Var Anual': '96ad563316477c9426b7f599590b64ec',
+            'IPVN Var Trimestral': '6cbef6076fc56964a4d64f994daab883',
+        },
+        'Suelo Bogota (Catastro)': {
+            'Precio del suelo Bogota - Mediana $/m2 (Catastro)': '9634e00bd29c649331ec1c6d36ceb3e8',
+            'Precio del suelo Bogota - Promedio $/m2 (Catastro)': '8840fe781239a1161ea7c435dd909d63',
         },
     },
     'Divisas': {

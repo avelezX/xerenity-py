@@ -142,6 +142,67 @@ for s in HARDCODED_SERIES:
     s["ticker"] = md5(s["source_name"])
 
 
+# ── Series de construcción / vivienda / suelo ────────────────────────────────
+# Camacol (camacol_serie), DANE ICOCIV (icociv_serie) y UAECD/Catastro
+# (catastro_series_value). Estas alimentan el tab /construccion del FE.
+# El ticker en search_mv es md5('<fuente>_<id>') (namespaced, ver migraciones
+# 20260731_lagos_torca_* e 20260731_icociv_dane_collector.sql). Verificado
+# contra search_mv el 2026-08-03.
+# Formato: (prefijo_fuente, id, display_name, sub_group)
+_CONSTRUCCION_RAW = [
+    ("camacol", 1, "PIB Edificaciones", "PIB"),
+    ("camacol", 2, "PIB Obras Civiles", "PIB"),
+    ("camacol", 3, "PIB Actividades Especializadas", "PIB"),
+    ("camacol", 4, "PIB Construccion Total", "PIB"),
+    ("camacol", 5, "PIB Total Colombia", "PIB"),
+    ("camacol", 6, "PIB Edificaciones Var%", "PIB"),
+    ("camacol", 7, "PIB Obras Civiles Var%", "PIB"),
+    ("camacol", 8, "PIB Act. Especializadas Var%", "PIB"),
+    ("camacol", 9, "PIB Construccion Total Var%", "PIB"),
+    ("camacol", 10, "PIB Total Colombia Var%", "PIB"),
+    ("camacol", 11, "ICOCED Total", "Costos"),
+    ("camacol", 12, "ICOCED Var Mensual", "Costos"),
+    ("camacol", 13, "ICOCED Var Ano Corrido", "Costos"),
+    ("camacol", 14, "ICOCED Var Anual", "Costos"),
+    ("camacol", 15, "Cemento Produccion", "Cemento"),
+    ("camacol", 16, "Cemento Despachos", "Cemento"),
+    ("camacol", 17, "Cemento Produccion Var% Anual", "Cemento"),
+    ("camacol", 18, "Cemento Despachos Var% Anual", "Cemento"),
+    ("camacol", 19, "Financiacion Constr NoVIS Pesos", "Financiacion"),
+    ("camacol", 20, "Financiacion Constr NoVIS UVR", "Financiacion"),
+    ("camacol", 21, "Financiacion Constr VIS Pesos", "Financiacion"),
+    ("camacol", 22, "Financiacion Constr VIS UVR", "Financiacion"),
+    ("camacol", 23, "Financiacion Adq NoVIS Pesos", "Financiacion"),
+    ("camacol", 24, "Financiacion Adq NoVIS UVR", "Financiacion"),
+    ("camacol", 25, "Financiacion Adq VIS Pesos", "Financiacion"),
+    ("camacol", 26, "Financiacion Adq VIS UVR", "Financiacion"),
+    ("camacol", 27, "IPVN Indice Nacional", "Precios Vivienda"),
+    ("camacol", 28, "IPVN Var Trimestral", "Precios Vivienda"),
+    ("camacol", 29, "IPVN Var Anual", "Precios Vivienda"),
+    ("camacol", 30, "PIB Edificaciones Var% anual", "PIB"),
+    ("camacol", 31, "PIB Obras Civiles Var% anual", "PIB"),
+    ("camacol", 32, "PIB Act. Especializadas Var% anual", "PIB"),
+    ("camacol", 33, "PIB Construccion Total Var% anual", "PIB"),
+    ("camacol", 34, "PIB Total Colombia Var% anual", "PIB"),
+    ("catastro", 1, "Precio del suelo Bogota - Mediana $/m2 (Catastro)", "Suelo Bogota (Catastro)"),
+    ("catastro", 2, "Precio del suelo Bogota - Promedio $/m2 (Catastro)", "Suelo Bogota (Catastro)"),
+    ("icociv", 1, "ICOCIV Total", "Costos"),
+    ("icociv", 2, "ICOCIV Var Mensual", "Costos"),
+    ("icociv", 3, "ICOCIV Var Ano Corrido", "Costos"),
+    ("icociv", 4, "ICOCIV Var Anual", "Costos"),
+]
+
+CONSTRUCCION_SERIES = [
+    {
+        "display_name": name,
+        "grupo": "Construcción",
+        "sub_group": sub,
+        "ticker": md5(f"{prefix}_{id_}"),
+    }
+    for prefix, id_, name, sub in _CONSTRUCCION_RAW
+]
+
+
 # ── Catalog builder ───────────────────────────────────────────────────────────
 
 def build_catalog(all_series: list[dict]) -> dict:
@@ -210,8 +271,9 @@ def main():
     banrep = parse_banrep_series(migration_file)
     print(f"  {len(banrep)} series BanRep encontradas")
     print(f"  {len(HARDCODED_SERIES)} series adicionales (IBR-OIS, SOFR, UST, Divisas...)")
+    print(f"  {len(CONSTRUCCION_SERIES)} series de construcción/vivienda/suelo (Camacol, ICOCIV, Catastro)")
 
-    all_series = banrep + HARDCODED_SERIES
+    all_series = banrep + HARDCODED_SERIES + CONSTRUCCION_SERIES
     catalog = build_catalog(all_series)
 
     total = sum(len(s) for sg in catalog.values() for s in sg.values())

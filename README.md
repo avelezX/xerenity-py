@@ -119,6 +119,40 @@ dfs = {name: pd.DataFrame(x.series.search(ticker)).set_index("time")["value"]
 ibr_df = pd.DataFrame(dfs)
 ```
 
+### Series de construcción, vivienda y suelo
+
+El catálogo incluye el grupo **`Construcción`** con las series de Camacol
+(PIB, ICOCED, Cemento, Financiación, IPVN), el **ICOCIV** del DANE y los
+**valores de referencia del suelo de Bogotá** (Catastro / UAECD). Ideal para
+exportar a un notebook:
+
+```python
+import pandas as pd
+from xerenity import Xerenity, CATALOG
+
+x = Xerenity("tu@email.com", "tu_password")
+
+# Sub-grupos disponibles
+print(list(CATALOG["Construcción"].keys()))
+# → ['Cemento', 'Costos', 'Financiacion', 'PIB', 'Precios Vivienda',
+#    'Suelo Bogota (Catastro)']
+
+# Traer una serie puntual por nombre (crudo, sin transformar)
+icociv = pd.DataFrame(x.series.get("ICOCIV Total"))          # DANE, base dic-2020=100
+ipvn   = pd.DataFrame(x.series.get("IPVN Indice Nacional"))  # Camacol
+suelo  = pd.DataFrame(x.series.get("Precio del suelo Bogota - Promedio $/m2 (Catastro)"))
+
+# Traer todo un sub-grupo a un solo DataFrame
+costos = CATALOG["Construcción"]["Costos"]   # {display_name: ticker}
+df = pd.DataFrame({
+    name: pd.DataFrame(x.series.search(t)).set_index("time")["value"]
+    for name, t in costos.items()
+})
+```
+
+Todo llega **crudo** (`[{"time": "YYYY-MM-DD", "value": float}]`); la
+normalización a índice base fija queda a tu criterio en el notebook.
+
 ## Módulos
 
 | Módulo | Descripción |
