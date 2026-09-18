@@ -72,7 +72,11 @@ class Marks:
             .maybe_single()
             .execute()
         )
-        return res.data
+        # supabase-py 2.x devuelve None (no un objeto con .data=None) cuando
+        # maybe_single() no encuentra fila: pasa en fines de semana, festivos
+        # o antes de que BanRep publique el IBR del día. Sin esto, ibr() y
+        # all() lanzaban AttributeError en vez de devolver None.
+        return res.data if res is not None else None
 
     # ── SOFR ─────────────────────────────────────────────────────────────────
 

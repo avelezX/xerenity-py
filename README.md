@@ -37,6 +37,39 @@ ndf_df = pd.DataFrame(x.marks.ndf("2026-02-27"))
 tes_df = pd.DataFrame(x.marks.tes("2026-02-27"))
 ```
 
+## Motor de datos (`x.data`) — nuevo en 0.4.0
+
+Acceso por el mismo motor que usa la plataforma: búsqueda por lenguaje natural
+(exacta, por alias, por similitud y por texto completo) sobre **todo** el
+catálogo, incluidas las fuentes internacionales y los índices de costos de
+construcción. Es aditivo: `x.series` y `x.marks` siguen funcionando igual.
+
+```python
+from xerenity import Xerenity
+
+x = Xerenity("tu@email.com", "tu_password")
+
+# Buscar: devuelve candidatos ordenados por relevancia
+x.data.search("inflación")
+# → [{"label": "Inflación IPC — Total Nacional", "table_name": "banrep_series_value_v2",
+#     "slice_value": "...", "confidence": 0.95, "has_data": True}, ...]
+
+# Buscar y traer los datos del mejor resultado, en un solo paso
+trm = x.data.get("TRM", desde="2026-01-01")
+trm["resolved"]      # → qué serie eligió y con qué confianza
+trm["rows"]          # → [{"time": "2026-01-02T00:00:00", "value": 3790.1, ...}, ...]
+trm["date_column"]   # → nombre de la columna de fecha en esas filas
+
+# Leer una serie conocida por tabla y slice
+x.data.series("currency", "USD:COP", desde="2026-09-01")
+
+# Qué tablas existen, con categoría, país y frescura
+x.data.catalog()
+```
+
+> `x.data` requiere una cuenta habilitada para el motor. Si tu cuenta no lo
+> está, las llamadas devuelven `{"error": ...}` en lugar de lanzar excepción.
+
 ## Catálogo de series
 
 El paquete incluye un catálogo estático con **más de 900 series** organizadas por categoría y subcategoría. No requiere conexión para explorar.

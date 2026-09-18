@@ -21,10 +21,29 @@ Uso:
 class DataEngine:
     """Facade del SDK sobre las RPCs canónicas del motor (read-only)."""
 
-    def __init__(self, connection):
-        self._conn = connection
+    # RPCs por canal. El canal MCP usa variantes que filtran a las tablas
+    # habilitadas para uso externo (data_tables_meta.mcp_exposed): así el
+    # resolver no le ofrece series que después no podría leer.
+    CANALES = {
+        "default": {"resolver": "resolve_query", "catalogo": "list_data_catalog_overview"},
+        "mcp":     {"resolver": "resolve_query_mcp", "catalogo": "list_mcp_catalog"},
+    }
 
-    def search(self, query: str, limit: int = 10) -> list:
+    def __init__(self, connection, canal: str = "default"):
+        self._conn = connection
+        self.usar_canal(canal)
+
+    def usar_canal(self, canal: str) -> None:
+        """
+        Elige qué variante del motor usar. 'default' para usuarios de la
+        plataforma; 'mcp' para la cuenta de servicio del servidor MCP.
+        """
+        if canal not in self.CANALES:
+            raise ValueError(f"canal desconocido: {canal!r} (opciones: {list(self.CANALES)})")
+        self.canal = canal
+        self._rpc = self.CANALES[canal]
+
+    def search(self, query: str, limit: int = 10, embedding: list = None) -> list:
         """
         Busca series por texto en lenguaje natural vía el resolver canónico
         (`resolve_query`) — el mismo del chart-bar.
@@ -32,14 +51,20 @@ class DataEngine:
         Args:
             query: Texto libre. Ej: 'bitcoin', 'TRM', 'IBR 3M', 'inflacion'.
             limit: Máximo de matches a devolver (ordenados por relevancia).
+            embedding: Opcional. Vector de 1536 dimensiones del texto
+                (text-embedding-3-small, el modelo del catálogo). Si se pasa,
+                el motor suma la búsqueda por significado; si no, busca por
+                palabras (exacto, alias, similitud, texto completo).
 
         Returns:
             [{"table_name", "slice_column", "slice_value", "label",
               "category", "confidence", "match_source"}]  (vacío si no hay match).
         """
         try:
-            res = self._conn.call_rpc(
-                "resolve_query", {"p_text": query, "p_limit": limit})
+            body = {"p_text": query, "p_limit": limit}
+            if embedding is not None:
+                body["p_embedding"] = embedding
+            res = self._conn.call_rpc(self._rpc["resolver"], body)
             return res or []
         except Exception as er:  # noqa: BLE001 — mantener el estilo del SDK
             return [{"error": str(er)}]
@@ -108,7 +133,7 @@ class DataEngine:
         (qué existe, con metadata: categoría, país, frescura, n de series).
         """
         try:
-            res = self._conn.call_rpc("list_data_catalog_overview", {})
+            res = self._conn.call_rpc(self._rpc["catalogo"], {})
             return res or []
         except Exception as er:  # noqa: BLE001
             return [{"error": str(er)}]
