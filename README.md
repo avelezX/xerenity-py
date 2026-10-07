@@ -1,6 +1,6 @@
 # xerenity
 
-Librería Python para acceder a datos financieros, series de tiempo y marcas de mercado de la plataforma [Xerenity](https://xerenity.vercel.app).
+Librería Python para acceder a datos financieros, series de tiempo y marcas de mercado de la plataforma [Xerenity](https://xerenity.co).
 
 ## Instalación
 
@@ -209,4 +209,4 @@ python3 scripts/generate_catalog.py /ruta/a/xerenity-db
 
 ## Registro
 
-Requiere cuenta en [xerenity.vercel.app](https://xerenity.vercel.app/login).
+Requiere cuenta en [xerenity.co](https://xerenity.co/login).
