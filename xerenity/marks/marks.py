@@ -4,7 +4,8 @@ Marcas de mercado diarias — curvas de tasas por fecha.
 Expone los datos almacenados en Supabase para cada sesión de mercado:
   - IBR: curva de tasas overnight colombiana (1d → 20y)
   - SOFR: curva OIS en USD (1m → 50y)
-  - NDF: puntos forward COP/USD por tenor
+  - NDF: forwards USD/COP indicativos de FXEmpire por tenor (tabla
+    cop_fwd_points; sin datos entre el 2026-03-13 y el 2026-10-13)
   - TES: curva de rendimientos de TES soberanos colombianos
 
 Uso:
@@ -17,14 +18,6 @@ Cada método devuelve un dict (o lista de dicts) listo para usar con pandas:
     df = pd.DataFrame(x.marks.sofr("2026-02-27"))
 """
 
-from supabase import create_client, Client
-from supabase.client import ClientOptions
-
-
-_SUPABASE_URL = "https://tvpehjbqxpiswkqszwwv.supabase.co"
-_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2cGVoamJxeHBpc3drcXN6d3d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY0NTEzODksImV4cCI6MjAxMjAyNzM4OX0.LZW0i9HU81lCdyjAdqjwwF4hkuSVtsJsSDQh7blzozw"
-
-
 class Marks:
     """
     Acceso a marcas diarias de mercado (curvas de tasas por fecha).
@@ -34,16 +27,6 @@ class Marks:
 
     def __init__(self, connection):
         self._conn = connection
-        # Cliente adicional con schema=trading para TES
-        self._trading = create_client(
-            _SUPABASE_URL,
-            _SUPABASE_ANON_KEY,
-            options=ClientOptions(
-                auto_refresh_token=False,
-                postgrest_client_timeout=40,
-                schema="trading",
-            ),
-        )
 
     # ── IBR ──────────────────────────────────────────────────────────────────
 
@@ -155,9 +138,12 @@ class Marks:
             ).execute()
             return res.data or []
         except Exception:
-            # Fallback: query directa a trading.tes_operation si el RPC no existe
+            # Fallback: query directa a tes_operation si el RPC falla. La tabla
+            # vive en el schema xerenity (la sesion del usuario), no en
+            # "trading": hasta oct-2026 este fallback usaba un cliente anonimo
+            # aparte con schema=trading y siempre fallaba.
             res = (
-                self._trading
+                self._conn.supabase
                 .from_("tes_operation")
                 .select("date, tes, yield, volume")
                 .like("date", f"{fecha}%")
